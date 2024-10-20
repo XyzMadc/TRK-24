@@ -9,10 +9,20 @@ import Button from "../ui/button";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { Avatar } from "@chakra-ui/react";
+import { useAuth } from "@/hooks/useAuth";
+import { UserData } from "@/type";
 
+const hiddenPath = ["auth", "404"];
 export default function Sidebar() {
   const { pathname } = useRouter();
+  const { user } = useAuth() as { user: UserData | null };
   const path = pathname.split("/")[1];
+
+  if (hiddenPath.includes(path)) {
+    return null;
+  }
+
+  const isProfileActive = user?.name ? pathname.includes(user.name) : false;
   return (
     <nav className="lg:w-1/5 w-full lg:h-screen p-4 text-zinc-200 lg:border-r border-zinc-700 flex lg:flex-col gap-4 justify-between lg:justify-start items-center fixed lg:static bottom-0 left-0 bg-black">
       <h2 className="text-xl font-bold hidden lg:block mb-10">TRK{"'"}24</h2>
@@ -30,13 +40,13 @@ export default function Sidebar() {
                 href="/mahasiswa"
                 icon={UsersFour}
                 text="Mahasiswa"
-                active={pathname === "/mahasiswa"}
+                active={path === "mahasiswa"}
               />
               <Button
                 href="/tugas"
                 icon={Notebook}
                 text="Tugas"
-                active={pathname === "/tugas"}
+                active={path === "tugas"}
               >
                 <span className="ml-auto bg-blue-500 text-white rounded-full px-2 py-1 text-xs lg:inline hidden">
                   2
@@ -46,15 +56,21 @@ export default function Sidebar() {
                 href="/jadwal"
                 icon={CalendarDots}
                 text="Jadwal"
-                active={pathname === "/jadwal"}
+                active={path === "jadwal"}
               />
-              <Link
-                href={"/user"}
-                className="flex items-center gap-2 lg:w-full px-4 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-500 hover:scale-105 transition-all duration-300 text-white"
-              >
-                <Avatar size={"xs"} />
-                <p className="hidden lg:block">Profile</p>
-              </Link>
+              {user?.name && (
+                <Link
+                  href={`/${user.name}`}
+                  className={`flex items-center gap-2 lg:w-full px-4 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-500 hover:scale-105 transition-all duration-300 text-white ${
+                    isProfileActive
+                      ? "bg-zinc-400 font-bold text-zinc-950 scale-105"
+                      : ""
+                  }`}
+                >
+                  <Avatar size={"xs"} />
+                  <p className="hidden lg:block">Profile</p>
+                </Link>
+              )}
             </>
           ) : (
             <>

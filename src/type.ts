@@ -1,13 +1,13 @@
 import { IconProps } from "@phosphor-icons/react";
 
-interface Assignment {
+export interface Assignment {
   title: string;
   description: string;
   file?: string;
   done: boolean;
 }
 
-interface DayScheduleProps {
+export interface DayScheduleProps {
   day: string;
   courses: {
     course: string;
@@ -16,7 +16,7 @@ interface DayScheduleProps {
   }[];
 }
 
-interface WeeklyScheduleTableProps {
+export interface WeeklyScheduleTableProps {
   scheduleData: {
     day: string;
     courses: {
@@ -27,12 +27,12 @@ interface WeeklyScheduleTableProps {
   }[];
 }
 
-interface UserLayoutProps {
+export interface UserLayoutProps {
   title: string;
   children: React.ReactNode;
 }
 
-interface ButtonProps {
+export interface ButtonProps {
   href: string;
   text: string;
   children?: React.ReactNode;
@@ -40,20 +40,20 @@ interface ButtonProps {
   icon: React.ComponentType<IconProps>;
 }
 
-interface FeedCardProps {
+export interface FeedCardProps {
   name: string;
   time: string;
   children: React.ReactNode;
 }
 
-interface DashboardInfoProps {
+export interface DashboardInfoProps {
   title: string;
   content: number;
   icon: React.ComponentType<IconProps>;
   className?: string;
 }
 
-interface MadingData {
+export interface MadingData {
   id: number;
   title: string;
   description: string;
@@ -62,7 +62,7 @@ interface MadingData {
   author: string;
 }
 
-interface AssignmentAdmin {
+export interface AssignmentAdmin {
   id: number;
   course: string;
   class: string;
@@ -71,24 +71,24 @@ interface AssignmentAdmin {
   studentsDone: number;
 }
 
-interface TimeSlot {
+export interface TimeSlot {
   startTime: string;
   endTime: string;
 }
 
-interface Room {
+export interface Room {
   name: string;
 }
 
-interface Dosen {
+export interface Dosen {
   name: string;
 }
 
-interface Matkul {
+export interface Matkul {
   name: string;
 }
 
-interface ScheduleItem {
+export interface ScheduleItem {
   id: string;
   day: string;
   time: TimeSlot[];
@@ -97,33 +97,33 @@ interface ScheduleItem {
   lecturer: Matkul[] | string;
 }
 
-interface InputFieldProps {
+export interface InputFieldProps {
   label: string;
   value: string | number;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-interface EditModalProps {
+export interface EditModalProps {
   item: ScheduleItem;
   onSave: (item: ScheduleItem) => void;
   onCancel: () => void;
 }
 
-export type {
-  Assignment,
-  DayScheduleProps,
-  WeeklyScheduleTableProps,
-  UserLayoutProps,
-  ButtonProps,
-  FeedCardProps,
-  DashboardInfoProps,
-  MadingData,
-  AssignmentAdmin,
-  ScheduleItem,
-  TimeSlot,
-  Room,
-  Dosen,
-  Matkul,
-  InputFieldProps,
-  EditModalProps,
-};
+export interface UserData {
+  name: string;
+  email: string;
+  NIM: string;
+  contact: string;
+  class: string;
+  imageURL?: string;
+}
+
+export interface FormData {
+  email: string;
+  password: string;
+  name: string;
+  NIM: string;
+  contact: string;
+  class: string;
+  imageUrl?: string;
+}
