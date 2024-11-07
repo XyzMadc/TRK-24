@@ -3,7 +3,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
 import { RegisterInput, registerSchema } from "@/schemas/auth";
 import { Spinner, useToast } from "@chakra-ui/react";
-import { UserPlus } from "@phosphor-icons/react";
 
 const classOptions = [
   { value: "TI-1A", label: "TI-1A" },

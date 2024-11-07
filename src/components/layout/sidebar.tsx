@@ -9,16 +9,12 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { Avatar } from "@chakra-ui/react";
 import Button from "../ui/button";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 
 const hiddenPath = ["auth", "404"];
 export default function Sidebar() {
   const { pathname } = useRouter();
-  const { data: session } = useSession();
   const path = pathname.split("/")[1];
-  const formattedUsername = session?.user?.name
-    .toLowerCase()
-    .replace(/\s+/g, "-");
 
   if (hiddenPath.includes(path)) {
     return null;
@@ -59,17 +55,17 @@ export default function Sidebar() {
                 text="Jadwal"
                 active={path === "jadwal"}
               />
-              <Link
-                href={`/${formattedUsername}`}
+              {/* <Link
+                href={}
                 className={`flex items-center gap-2 lg:w-full px-4 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-500 hover:scale-105 transition-all duration-300 text-white ${
-                  pathname === "profile"
+                  pathname.startsWith("/user")
                     ? "bg-zinc-400 font-bold text-zinc-950 scale-105"
                     : ""
                 }`}
               >
                 <Avatar size={"xs"} />
                 <p className="hidden lg:block">Profile</p>
-              </Link>
+              </Link> */}
             </>
           ) : (
             <>
