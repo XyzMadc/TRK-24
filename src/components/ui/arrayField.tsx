@@ -1,4 +1,4 @@
-import { Dosen, Matkul, Room } from "@/type";
+import { Dosen, Matkul, Room } from "@/types/type";
 import React from "react";
 import InputField from "./inputField";
 

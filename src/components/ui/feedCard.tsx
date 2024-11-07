@@ -1,4 +1,4 @@
-import { FeedCardProps } from "@/type";
+import { FeedCardProps } from "@/types/type";
 import { Avatar } from "@chakra-ui/react";
 import { BookmarkSimple } from "@phosphor-icons/react";
 
@@ -21,9 +21,9 @@ export default function FeedCard({ name, time, children }: FeedCardProps) {
 
       <p className="mb-4">{children}</p>
 
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
-        <figure className="size-40 lg:size-48 border bg-zinc-700 rounded-lg overflow-hidden" />
-        <figure className="size-40 lg:size-48 border bg-zinc-700 rounded-lg overflow-hidden" />
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 place-items-center">
+        <figure className="size-32 lg:size-48 border bg-zinc-700 rounded-lg overflow-hidden" />
+        <figure className="size-32 lg:size-48 border bg-zinc-700 rounded-lg overflow-hidden" />
       </div>
     </section>
   );

@@ -1,4 +1,4 @@
-import { DashboardInfoProps } from "@/type";
+import { DashboardInfoProps } from "@/types/type";
 
 export default function DashboardInfo({
   title,

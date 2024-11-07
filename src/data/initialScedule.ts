@@ -1,4 +1,4 @@
-import { ScheduleItem } from "@/type";
+import { ScheduleItem } from "@/types/type";
 
 export const initialSchedule: { [key: string]: ScheduleItem[] } = {
   "TI-1A": [

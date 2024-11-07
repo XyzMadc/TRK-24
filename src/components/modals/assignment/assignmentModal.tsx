@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { X } from "@phosphor-icons/react";
-import { AssignmentAdmin } from "@/type";
+import { AssignmentAdmin } from "@/types/type";
 import InputField from "../../ui/inputField";
 
 interface AssignmentModalProps {
@@ -44,7 +43,7 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
               name="description"
               value={assignment.description}
               onChange={onInputChange}
-              className="w-full px-4 py-3 bg-zinc-800 text-gray-200 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+              className="w-full px-4 py-3 bg-black text-gray-200 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
               placeholder="Enter assignment description..."
             />
           </div>
@@ -66,20 +65,17 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
               className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-6 rounded-lg shadow-lg transition-colors flex items-center"
               onClick={onCancel}
             >
-              <X className="mr-2" /> Cancel
+              Cancel
             </button>
           </div>
         </form>
       ) : (
-        <div className="flex flex-col gap-4">
-          <p className="text-md text-zinc-400 leading-relaxed">
+        <div className="flex flex-col gap-4 font-extrabold">
+          <p className="text-xl text-zinc-400 leading-relaxed">
             {assignment.description}
           </p>
           <div className="flex justify-between items-center text-zinc-400">
-            <p>
-              Deadline:{" "}
-              <span className="font-semibold">{assignment.deadline}</span>
-            </p>
+            <p>Deadline: {assignment.deadline}</p>
             <p>{assignment.studentsDone} students completed</p>
           </div>
 

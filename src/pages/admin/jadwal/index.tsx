@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Breadcrumbs from "@/components/layout/breadcrumbs";
-import { ScheduleItem } from "@/type";
+import { ScheduleItem } from "@/types/type";
 import ScheduleList from "@/components/features/schedule/scheduleList";
 import { initialSchedule } from "@/data/initialScedule";
 

@@ -1,4 +1,4 @@
-import { InputFieldProps } from "@/type";
+import { InputFieldProps } from "@/types/type";
 
 const InputField: React.FC<InputFieldProps> = ({ label, value, onChange }) => {
   return (

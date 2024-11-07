@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Eye, Pencil } from "@phosphor-icons/react";
-import { AssignmentAdmin } from "@/type";
+import { AssignmentAdmin } from "@/types/type";
 
 interface AssignmentCardProps {
   assignment: AssignmentAdmin;

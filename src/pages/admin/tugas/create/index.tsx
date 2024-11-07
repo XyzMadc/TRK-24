@@ -41,7 +41,6 @@ export default function CreateAssignmentPage() {
               id="description"
               rows={4}
               className="w-full px-3 py-2 bg-black text-gray-200 border border-zinc-700 rounded-lg focus:outline-none focus:border-blue-500"
-              placeholder="Masukan Deskripsi Tugas..."
             ></textarea>
           </div>
 
@@ -124,7 +123,7 @@ export default function CreateAssignmentPage() {
 
           <button
             type="submit"
-            className="flex items-center justify-center w-full px-4 py-2 text-lg font-bold text-white bg-none border border-zinc-700 rounded-lg hover:border-white hover:bg-white hover:text-zinc-900 transition-colors"
+            className="flex items-center justify-center w-full px-4 py-2 text-lg font-bold text-white bg-none border border-zinc-700 rounded-lg hover:border-white hover:bg-white hover:text-zinc-900 transition-all duration-500 ease-in-out"
           >
             Create Assignment
           </button>

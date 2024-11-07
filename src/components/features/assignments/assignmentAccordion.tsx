@@ -1,4 +1,4 @@
-import { Assignment } from "@/type";
+import { Assignment } from "@/types/type";
 import {
   AccordionButton,
   AccordionIcon,

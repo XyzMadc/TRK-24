@@ -1,5 +1,5 @@
 import React from "react";
-import { ScheduleItem } from "@/type";
+import { ScheduleItem } from "@/types/type";
 import ScheduleCard from "../../ui/scheduleCard";
 import EditModal from "../../modals/schedule/scheduleEditModal";
 

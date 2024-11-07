@@ -5,24 +5,25 @@ import {
   SignOut,
   UsersFour,
 } from "@phosphor-icons/react";
-import Button from "../ui/button";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { Avatar } from "@chakra-ui/react";
-import { useAuth } from "@/hooks/useAuth";
-import { UserData } from "@/type";
+import Button from "../ui/button";
+import { signOut, useSession } from "next-auth/react";
 
 const hiddenPath = ["auth", "404"];
 export default function Sidebar() {
   const { pathname } = useRouter();
-  const { user } = useAuth() as { user: UserData | null };
+  const { data: session } = useSession();
   const path = pathname.split("/")[1];
+  const formattedUsername = session?.user?.name
+    .toLowerCase()
+    .replace(/\s+/g, "-");
 
   if (hiddenPath.includes(path)) {
     return null;
   }
 
-  const isProfileActive = user?.name ? pathname.includes(user.name) : false;
   return (
     <nav className="lg:w-1/5 w-full lg:h-screen p-4 text-zinc-200 lg:border-r border-zinc-700 flex lg:flex-col gap-4 justify-between lg:justify-start items-center fixed lg:static bottom-0 left-0 bg-black">
       <h2 className="text-xl font-bold hidden lg:block mb-10">TRK{"'"}24</h2>
@@ -58,19 +59,17 @@ export default function Sidebar() {
                 text="Jadwal"
                 active={path === "jadwal"}
               />
-              {user?.name && (
-                <Link
-                  href={`/${user.name}`}
-                  className={`flex items-center gap-2 lg:w-full px-4 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-500 hover:scale-105 transition-all duration-300 text-white ${
-                    isProfileActive
-                      ? "bg-zinc-400 font-bold text-zinc-950 scale-105"
-                      : ""
-                  }`}
-                >
-                  <Avatar size={"xs"} />
-                  <p className="hidden lg:block">Profile</p>
-                </Link>
-              )}
+              <Link
+                href={`/${formattedUsername}`}
+                className={`flex items-center gap-2 lg:w-full px-4 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-500 hover:scale-105 transition-all duration-300 text-white ${
+                  pathname === "profile"
+                    ? "bg-zinc-400 font-bold text-zinc-950 scale-105"
+                    : ""
+                }`}
+              >
+                <Avatar size={"xs"} />
+                <p className="hidden lg:block">Profile</p>
+              </Link>
             </>
           ) : (
             <>
@@ -104,7 +103,13 @@ export default function Sidebar() {
             </>
           )}
         </div>
-        <Button href="/signOut" icon={SignOut} text="Sign Out" />
+        <button
+          onClick={() => signOut()}
+          className="flex items-center gap-2 lg:w-full px-4 py-2 rounded-lg bg-red-600 hover:bg-red-500 hover:scale-105 transition-all duration-300 text-white"
+        >
+          <SignOut size={20} />
+          <p className="hidden lg:inline">Sign Out</p>
+        </button>
       </div>
     </nav>
   );

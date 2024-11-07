@@ -1,4 +1,4 @@
-import { WeeklyScheduleTableProps } from "@/type";
+import { WeeklyScheduleTableProps } from "@/types/type";
 
 const TableHeader: React.FC<{ title: string }> = ({ title }) => (
   <th className="py-3 px-4 font-semibold border border-zinc-600">{title}</th>

@@ -1,5 +1,5 @@
-import { MadingData } from "@/type";
-import { DotsThreeVertical, Pencil, Trash, X } from "@phosphor-icons/react";
+import { MadingData } from "@/types/type";
+import { Eye, Pencil, Trash, X } from "@phosphor-icons/react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Avatar } from "@chakra-ui/react";
@@ -27,9 +27,9 @@ export default function TableMading({
         <thead>
           <tr>
             <th className="table-component">Title</th>
-            <th className="table-component">Author</th>
-            <th className="table-component text-center w-40">Action</th>
-            <th className="table-component text-center w-20">Detail</th>
+            <th className="table-component text-center w-60">Author</th>
+            <th className="table-component text-center w-20">View</th>
+            <th className="table-component text-center w-20">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -37,20 +37,20 @@ export default function TableMading({
             <tr key={mading.id}>
               <td className="table-component">{mading.title}</td>
               <td className="table-component">{mading.author}</td>
-              <td className="table-component text-center space-x-2">
-                <button className="bg-blue-700 hover:bg-blue-600 text-white font-bold py-0.5 px-3 rounded-full">
-                  <Pencil size={24} />
-                </button>
-                <button className="bg-red-700 hover:bg-red-600 text-white font-bold py-0.5 px-3 rounded-full">
-                  <Trash size={24} />
-                </button>
-              </td>
               <td className="table-component text-center">
                 <button
                   onClick={() => handleOpenModal(mading)}
-                  className="bg-zinc-700 hover:bg-zinc-600 text-white font-bold p-0.5 rounded-full"
+                  className="bg-zinc-700 hover:bg-zinc-600 text-white font-bold size-10 flex items-center justify-center rounded-full"
                 >
-                  <DotsThreeVertical size={24} />
+                  <Eye size={24} />
+                </button>
+              </td>
+              <td className="table-component flex justify-center gap-2">
+                <button className="bg-blue-700 hover:bg-blue-600 text-white font-bold size-10 rounded-full flex items-center justify-center">
+                  <Pencil size={24} />
+                </button>
+                <button className="bg-red-700 hover:bg-red-600 text-white font-bold size-10 rounded-full flex items-center justify-center">
+                  <Trash size={24} />
                 </button>
               </td>
             </tr>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { X } from "@phosphor-icons/react";
-import { ScheduleItem } from "@/type";
+import { ScheduleItem } from "@/types/type";
 import InputField from "../../ui/inputField";
 import ArrayField from "../../ui/arrayField";
 

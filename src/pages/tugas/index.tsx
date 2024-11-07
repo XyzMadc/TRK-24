@@ -1,5 +1,5 @@
 import AssignmentViewPage from "@/components/pages/client/tugas";
-import { Assignment } from "@/type";
+import { Assignment } from "@/types/type";
 
 const assignmentData: Assignment[] = [
   {

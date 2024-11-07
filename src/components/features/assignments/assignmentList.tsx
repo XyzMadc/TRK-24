@@ -1,4 +1,4 @@
-import { AssignmentAdmin } from "@/type";
+import { AssignmentAdmin } from "@/types/type";
 import AssignmentCard from "./assignmentCard";
 
 interface AssignmentListProps {

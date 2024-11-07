@@ -110,20 +110,13 @@ export interface EditModalProps {
 }
 
 export interface UserData {
+  id: string;
   name: string;
-  email: string;
-  NIM: string;
-  contact: string;
-  class: string;
-  imageURL?: string;
-}
-
-export interface FormData {
-  email: string;
   password: string;
-  name: string;
-  NIM: string;
-  contact: string;
-  class: string;
-  imageUrl?: string;
+  role: "member" | "admin";
+  nim: string;
+  typeClass: string;
+  imageURL?: string;
+  createdAt: Date;
+  updatedAt: Date;
 }

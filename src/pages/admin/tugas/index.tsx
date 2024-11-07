@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Plus } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
-import { AssignmentAdmin } from "@/type";
+import { AssignmentAdmin } from "@/types/type";
 import AssignmentList from "@/components/features/assignments/assignmentList";
 import Breadcrumbs from "@/components/layout/breadcrumbs";
 import Link from "next/link";

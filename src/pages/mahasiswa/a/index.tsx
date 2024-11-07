@@ -5,6 +5,13 @@ export default function TI_1APage() {
   return (
     <UserLayout title="TI-1A">
       <CardUser />
+      <CardUser />
+      <CardUser />
+      <CardUser />
+      <CardUser />
+      <CardUser />
+      <CardUser />
+      <CardUser />
     </UserLayout>
   );
 }

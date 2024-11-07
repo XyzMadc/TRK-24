@@ -1,4 +1,4 @@
-import { DayScheduleProps } from "@/type";
+import { DayScheduleProps } from "@/types/type";
 
 export const DaySchedule = ({ day, courses }: DayScheduleProps) => (
   <section className="bg-zinc-800 p-4 rounded-lg shadow mb-4">

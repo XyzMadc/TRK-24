@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import { PencilSimple } from "@phosphor-icons/react";
-import { ScheduleItem } from "@/type";
+import { ScheduleItem } from "@/types/type";
 
 interface ScheduleCardProps {
   item: ScheduleItem;
