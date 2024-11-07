@@ -55,8 +55,8 @@ export default function Sidebar() {
                 text="Jadwal"
                 active={path === "jadwal"}
               />
-              {/* <Link
-                href={}
+              <Link
+                href={"/user"}
                 className={`flex items-center gap-2 lg:w-full px-4 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-500 hover:scale-105 transition-all duration-300 text-white ${
                   pathname.startsWith("/user")
                     ? "bg-zinc-400 font-bold text-zinc-950 scale-105"
@@ -65,7 +65,7 @@ export default function Sidebar() {
               >
                 <Avatar size={"xs"} />
                 <p className="hidden lg:block">Profile</p>
-              </Link> */}
+              </Link>
             </>
           ) : (
             <>
