@@ -2,21 +2,17 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
 import { RegisterInput, registerSchema } from "@/schemas/auth";
+import Link from "next/link";
 import { Spinner, useToast } from "@chakra-ui/react";
 
-const classOptions = [
-  { value: "TI-1A", label: "TI-1A" },
-  { value: "TI-1B", label: "TI-1B" },
-  { value: "TI-1C", label: "TI-1C" },
-];
-
-export default function SignUpPage() {
+export default function RegisterPage() {
   const router = useRouter();
   const toast = useToast();
+
   const {
     register,
     handleSubmit,
-    formState: { errors, isLoading },
+    formState: { errors, isSubmitting },
   } = useForm<RegisterInput>({
     resolver: zodResolver(registerSchema),
   });
@@ -31,131 +27,143 @@ export default function SignUpPage() {
         body: JSON.stringify(data),
       });
 
-      if (!response.ok) throw new Error("Failed to register");
-
-      const { userId } = await response.json();
-
-      if (userId) {
-        toast({
-          title: "Success",
-          description: "Registration successful",
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-        });
-        router.push("/auth/login");
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || "Registration failed");
       }
+
+      toast({
+        title: "Success",
+        description: "Registration successful! Please login.",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+
+      router.push("/auth/login");
     } catch (error) {
-      console.error("Register error:", error);
+      console.error("Registration error:", error);
       toast({
         title: "Error",
-        description: "Registration failed",
+        description:
+          error instanceof Error ? error.message : "Registration failed",
         status: "error",
         duration: 3000,
         isClosable: true,
       });
     }
   };
+
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="w-4/5 max-w-xl bg-zinc-900 p-8 rounded-lg border border-zinc-700 m-auto text-zinc-300 h-fit"
-    >
-      <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
-
-      {/* Name Field */}
-      <div className="mb-4">
-        <label htmlFor="name" className="block mb-1">
-          Name
-        </label>
-        <input
-          type="text"
-          id="name"
-          className="text-black font-semibold w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          {...register("name", { required: "Name is required" })}
+    <div className="flex h-screen">
+      <div className="hidden lg:flex w-1/2 bg-black text-white justify-center items-center p-10">
+        <img
+          src="https://placehold.co/400x400"
+          alt="Astronaut with a colorful galaxy reflection in the helmet"
         />
-        {errors.name && <div>{errors.name.message}</div>}
       </div>
 
-      {/* NIM Field */}
-      <div className="mb-4">
-        <label htmlFor="nim" className="block mb-1">
-          NIM
-        </label>
-        <input
-          type="text"
-          id="nim"
-          className="text-black font-semibold w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          {...register("nim", { required: "NIM is required" })}
-        />
-        {errors.nim && <div>{errors.nim.message}</div>}
-      </div>
+      <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-center p-10">
+        <div className="w-full max-w-md">
+          <h1 className="text-4xl lg:text-5xl font-bold mb-4">
+            Join TRK{"'"}24!
+          </h1>
+          <p className="text-sm lg:text-lg mb-8">
+            Create your account to access TRK Website
+          </p>
 
-      {/* Type Class Field */}
-      <div className="mb-6">
-        <label htmlFor="typeClass" className="block mb-1 font-medium">
-          Kelas
-        </label>
-        <div className="relative">
-          <select
-            id="typeClass"
-            {...register("typeClass")}
-            className="w-full p-2 bg-zinc-800 border border-zinc-700 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all pr-10"
-          >
-            <option value="" disabled selected>
-              Select your class
-            </option>
-            {classOptions.map((option) => (
-              <option
-                key={option.value}
-                value={option.value}
-                className="bg-zinc-800"
-              >
-                {option.label}
-              </option>
-            ))}
-          </select>
-          <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-            <svg
-              className="w-4 h-4 fill-current text-zinc-400"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clipRule="evenodd"
-                fillRule="evenodd"
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            {/* Name Input */}
+            <div>
+              <input
+                type="text"
+                {...register("name")}
+                placeholder="Full Name"
+                className={`w-full border border-gray-300 rounded-lg py-2 px-4 ${
+                  errors.name && "focus:outline-red-500 border-red-500"
+                }`}
               />
-            </svg>
-          </div>
+              {errors.name && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.name.message}
+                </p>
+              )}
+            </div>
+
+            {/* NIM Input */}
+            <div>
+              <input
+                type="text"
+                {...register("nim")}
+                placeholder="NIM"
+                className={`w-full border border-gray-300 rounded-lg py-2 px-4 ${
+                  errors.nim && "focus:outline-red-500 border-red-500"
+                }`}
+              />
+              {errors.nim && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.nim.message}
+                </p>
+              )}
+            </div>
+
+            {/* Class Selection */}
+            <div>
+              <select
+                {...register("typeClass")}
+                className={`w-full border border-gray-300 rounded-lg py-2 px-4 ${
+                  errors.typeClass && "focus:outline-red-500 border-red-500"
+                }`}
+              >
+                <option value="">Select your class</option>
+                <option value="TI-1A">TI-1A</option>
+                <option value="TI-1B">TI-1B</option>
+                <option value="TI-1C">TI-1C</option>
+              </select>
+              {errors.typeClass && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.typeClass.message}
+                </p>
+              )}
+            </div>
+
+            {/* Password Input */}
+            <div>
+              <input
+                type="password"
+                {...register("password")}
+                placeholder="Password"
+                className={`w-full border border-gray-300 rounded-lg py-2 px-4 ${
+                  errors.password && "focus:outline-red-500 border-red-500"
+                }`}
+              />
+              {errors.password && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.password.message}
+                </p>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              className="w-full font-bold tracking-wide bg-black hover:bg-zinc-800 text-white rounded-lg py-2 px-4 flex justify-center items-center gap-4 transition-all duration-200 ease-in"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? <Spinner size={"md"} /> : "Register"}
+            </button>
+
+            <div className="flex justify-center items-center mt-2 gap-1">
+              <p className="text-sm text-gray-500">Already have an account?</p>
+              <Link
+                href="/auth/login"
+                className="text-blue-500 hover:underline font-semibold"
+              >
+                Login
+              </Link>
+            </div>
+          </form>
         </div>
-        {errors.typeClass && (
-          <div className="text-red-500 text-sm mt-1">
-            {errors.typeClass.message}
-          </div>
-        )}
       </div>
-
-      {/* Password Field */}
-      <div className="mb-4">
-        <label htmlFor="password" className="block mb-1">
-          Password
-        </label>
-        <input
-          type="password"
-          id="password"
-          className="text-black font-semibold w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          {...register("password", { required: "Password is required" })}
-        />
-        {errors.password && <div>{errors.password.message}</div>}
-      </div>
-
-      <button
-        type="submit"
-        className="w-full font-bold bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition-colors flex gap-4 items-center justify-center"
-        disabled={isLoading}
-      >
-        {isLoading ? <Spinner size={"md"} /> : "Sign Up"}
-      </button>
-    </form>
+    </div>
   );
 }

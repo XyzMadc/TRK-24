@@ -111,10 +111,10 @@ export interface EditModalProps {
 
 export interface UserData {
   id: string;
+  nim: string;
   name: string;
   password: string;
   role: "member" | "admin";
-  nim: string;
   typeClass: string;
   imageURL?: string;
   createdAt: Date;

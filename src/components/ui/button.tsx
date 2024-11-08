@@ -11,11 +11,11 @@ export default function Button({
   return (
     <Link
       href={href}
-      className={`flex items-center gap-2 lg:w-full px-4 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-500 hover:scale-105 transition-all duration-300 text-white ${
-        active ? "bg-zinc-500" : ""
+      className={`flex items-center gap-2 lg:w-full px-4 py-2 rounded-lg hover:bg-zinc-800 hover:scale-105 transition-all duration-300 text-white ${
+        active ? "font-bold text-lg" : ""
       }`}
     >
-      <Icon size={20} />
+      <Icon size={active ? 24 : 20} weight={active ? "fill" : "regular"} />
       <p className="hidden lg:inline">{text}</p>
       {children}
     </Link>

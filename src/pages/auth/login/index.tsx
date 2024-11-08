@@ -5,12 +5,10 @@ import { useRouter } from "next/router";
 import { LoginInput, loginSchema } from "@/schemas/auth";
 import Link from "next/link";
 import { Spinner, useToast } from "@chakra-ui/react";
-import { SignIn } from "@phosphor-icons/react";
 
 export default function LoginPage() {
   const router = useRouter();
   const toast = useToast();
-
   const {
     register,
     handleSubmit,
